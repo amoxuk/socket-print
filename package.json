@@ -2,7 +2,7 @@
     "name": "socket-console",
     "displayName": "socket-console",
     "description": "tcp to vscode console",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "amoxuk",
     "engines": {
         "vscode": "^1.32.0"
