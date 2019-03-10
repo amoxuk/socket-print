@@ -8,8 +8,48 @@
 
 
 
-## Requirements
+## Robot Framework
+RobotListener.py
+```python 
 
+# ecoding=utf-8
+# Author: Sven_Weng
+# Email : sven_weng@wengyb.com
+# Web   : http://wybblog.applinzi.com
+import socket
+
+
+class RobotListener(object):
+    ROBOT_LISTENER_API_VERSION = 2
+    def __init__(self):
+        self.sock = socket.socket()
+        self.conn = self.sock.connect(("127.0.0.1", 57610))
+
+    def start_suite(self, name, args):
+        self._send_socket("Starting Suite : " + name + "  " + args['source'])
+
+    def start_test(self, name, args):
+        self._send_socket("Starting test : " + name)
+        if args['template']:
+            print 'Template is : ' + args['template']
+
+    def end_test(self, name, args):
+        self._send_socket("Ending test:  " + args['longname'])
+        self._send_socket("Test Result is : " + args['status'])
+        self._send_socket("Test Time is: " + str(args['elapsedtime']))
+
+    def log_message(self, message):
+        self._send_socket(message['timestamp'] + " :   " + message['level'] + " : " + message['message'])
+
+    def _send_socket(self, msg):
+        self.sock.sendall(msg)
+```
+
+```bat 
+:: robot framework 运行一个文件并打印日志到57610端口
+pybot.bat --listener RobotListener.py test.robot
+
+```
 
 
 ## Extension Settings
