@@ -60,4 +60,10 @@ pybot.bat --listener RobotListener.py test.robot
 
 修改端口之后生效：`Ctrl+Shift+P` 之后输入`socket print`,选择socket print 确认即可生效
 
+## Install
+```bat
+code --install-extension "e:\Download\socket-console-0.0.3.vsix" 
+```
+后面的路径为socket-console的路径
+
 **Enjoy!**
